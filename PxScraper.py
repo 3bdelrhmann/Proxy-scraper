@@ -1,29 +1,17 @@
 import requests
-from datetime import datetime
-startTime = datetime.now()
-
-
 def WebsitesList():
     with open("Px-webs.txt", "r") as pxWebs:
         pxWebs = pxWebs.read().split("\n")
     return pxWebs
-
 
 def GetRawData(WebLink):
     R = requests.get(WebLink)
     webContent = R.content
     return webContent
 
-
 def WriteProxy(proxy):
     with open("Results.txt", "a") as p:
         p.write(proxy+"\n")
-
-
-def create_file(data, file_name):
-    with open(file_name + '.txt', 'a') as p:
-        p.write(data)
-
 
 def RawToList(RawData):
     RawData = str(RawData)
@@ -31,10 +19,7 @@ def RawToList(RawData):
     for Sign in toBeReplaced:
         RawData = RawData.replace(Sign, " ")
     SplitedRawData = RawData.split(" ")
-
-    SplitedRawData = RawData.split(" ")
     return SplitedRawData
-
 
 def CheckIfProxy(proxy):
     isProxy = False
@@ -43,7 +28,6 @@ def CheckIfProxy(proxy):
         if Num.isdigit():
             isProxy = True
     return isProxy
-
 
 def AnalyseRawData(RawData):
     getPort = False
@@ -60,8 +44,7 @@ def AnalyseRawData(RawData):
             if isProxy == True:
                 proxy += Str + ':'
                 getPort = True
-
-
+	
 def Run():
     Websites = WebsitesList()
     for website in Websites:
@@ -72,6 +55,6 @@ def Run():
         except:
             pass
 
-
 Run()
 print(datetime.now() - startTime)
+
