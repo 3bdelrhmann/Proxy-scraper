@@ -56,5 +56,4 @@ def Run():
             pass
 
 Run()
-print(datetime.now() - startTime)
 
